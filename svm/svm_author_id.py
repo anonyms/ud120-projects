@@ -57,7 +57,16 @@ print "scoring time:",round(time()-t2,3),"s"
 
 print "The accuracy was: ",acc
 
+print "prediction 10 ", predictions[10]
+print "prediction 26 ", predictions[26]
+print "prediction 50 ", predictions[50]
 
+i = 0
+j = 0
+print "length of predictions is ",len(predictions)
+for x in range (0,len(predictions)-1):
+	if(predictions[x]==1): i = i + 1 
+	else: j = j + 1
 
-
-
+print "i is ",i
+print "j is ",j
