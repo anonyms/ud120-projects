@@ -37,7 +37,7 @@ labels_train = labels_train[:len(labels_train)/100]
 
 ##Back to orginial code
 
-clf = SVC(kernel='linear')
+clf = SVC(kernel='rbf')  ##Changed from 'linear'
 
 t0 = time()
 clf.fit(features_train,labels_train)
