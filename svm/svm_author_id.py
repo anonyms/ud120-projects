@@ -32,12 +32,12 @@ from sklearn.svm import SVC
 ### Drastically cut training data
 
 #########################################################
-features_train = features_train[:len(features_train)/100] 
-labels_train = labels_train[:len(labels_train)/100] 
+##features_train = features_train[:len(features_train)/100] 
+##labels_train = labels_train[:len(labels_train)/100] 
 
 ##Back to orginial code
 
-clf = SVC(kernel='rbf')  ##Changed from 'linear'
+clf = SVC(kernel='rbf',C=10000)  ##Changed from 'linear'
 
 t0 = time()
 clf.fit(features_train,labels_train)
