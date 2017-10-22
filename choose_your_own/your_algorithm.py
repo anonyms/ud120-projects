@@ -24,21 +24,39 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+##plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from numpy import matrix
+import numpy as np
+
+##results = np.matrix()
+##initiator = matrix( [[20,3,17],[20,3,10],[20,5,8]] )
+nestimators_list = [20,10,5,3]
+min_samples_split_list = [5,3,2]
+max_depth_list =[2,5,10,15] 
 
 
+for x in nestimators_list:
+	for y in min_samples_split_list:
+		for z in max_depth_list:
+			print "The n_estimator is ",x,"The min_samples_split is ",y,"The max_depth_list is ",z
+			clf = RandomForestClassifier(n_estimators = x,min_samples_split = y,max_depth=z) ##max_depth=5) ##n_estimators = 20,max_depth=10, random_state=0)
+			clf.fit(features_train, labels_train)
+
+			acc = accuracy_score(clf.predict(features_test),labels_test)
+			print "The accuracy for this test is: ",acc
 
 
-
-
-
+"""
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
-    pass
+    pass"""
+
