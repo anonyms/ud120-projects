@@ -33,11 +33,8 @@ reg.fit(ages_train,net_worths_train)
 
 
 
-print "The slope so far is: ",reg.coef_
-print "The score so far is: ",reg.score(ages_test,net_worths_test)
-
-
-
+print "The slope to begin with is: ",reg.coef_
+print "The score with the test dat is: ",reg.score(ages_test,net_worths_test)
 
 
 try:
@@ -84,6 +81,15 @@ if len(cleaned_data) > 0:
     plt.ylabel("net worths")
     plt.show()
 
+    reg2 = LinearRegression()
+    reg2.fit(ages,net_worths)
+
+
+
+    print "The new slope is is: ",reg2.coef_
+    print "The score with the test dat is: ",reg2.score(ages_test,net_worths_test)
+
+   	
 
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
