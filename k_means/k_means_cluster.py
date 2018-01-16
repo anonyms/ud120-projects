@@ -31,7 +31,7 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
         for ii, pp in enumerate(pred):
             if poi[ii]:
                 plt.scatter(features[ii][0], features[ii][1], color="r", marker="*")
-    plt.xlabel(f1_name)
+    plt.xlabel(f1_nama)
     plt.ylabel(f2_name)
     plt.savefig(name)
     plt.show()
