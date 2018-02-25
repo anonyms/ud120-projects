@@ -32,12 +32,38 @@ features_test  = vectorizer.transform(features_test).toarray()
 ### a classic way to overfit is to use a small number
 ### of data points and a large number of features;
 ### train on only 150 events to put ourselves in this regime
-features_train = features_train[:150].toarray()
-labels_train   = labels_train[:150]
+features_train_sub = features_train[:150].toarray()
+labels_train_sub   = labels_train[:150]
 
 
 
 ### your code goes here
 
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf.fit(features_train_sub,labels_train_sub)
+##clf.fit(features_train,labels_train)
 
+print "The score of the first Decision Tree Classifer is : ", clf.score(features_test,labels_test)
+print "Size of the whole shabang : ", len(clf.feature_importances_)
 
+ctr = 0
+list_of_interesting_values = []
+max = 0
+max_count = 0
+
+for i in clf.feature_importances_:
+	if i > 0.1:
+		list_of_interesting_values.append(i)
+		print vectorizer.get_feature_names()[ctr],"is in max"
+
+	if i > max:
+		max = i
+		max_count = ctr
+
+	ctr = ctr+1
+
+print "Well this isn't going to work, the new list please : ", list_of_interesting_values
+print "Making the max value : ",max,"  sitting comfortably at position : ", max_count
+
+print "Skeptical, but sure - feature names : ", vectorizer.get_feature_names()[max_count]

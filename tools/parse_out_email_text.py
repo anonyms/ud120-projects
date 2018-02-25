@@ -37,19 +37,25 @@ def parseOutText(f):
         stemmer = SnowballStemmer("english")
         text_string = text_string.replace("\n"," ")
         text_string = text_string.replace("\r"," ")
+        text_string = text_string.replace("\t"," ")
+
+        ##text_string = text_string.replace("    "," ")
+        ##text_string = text_string.replace("   "," ")
+        ##text_string = text_string.replace("  "," ")
+
         words = text_string.split(" ")
         ret = ""
         new_words = []
-        for i in range(len(words)):
-            words[i] = words[i].replace("\n","")
-            words[i] = words[i].replace(" ","")
-            if words[i] != "":
-                new_words.append(words[i])
-        words = new_words
+        ##for i in range(len(words)):
+        ##    words[i] = words[i].replace("\n","")
+        ##    words[i] = words[i].replace(" ","")
+        ##    if words[i] != "":
+        ##        new_words.append(words[i])
+        ##words = new_words
         for i in words:
             if len(ret) == 0:
                 ret = stemmer.stem(i)
-            else:
+            elif len(i)>0:
                 ret = ret + " " + stemmer.stem(i)
 
         words = ret
