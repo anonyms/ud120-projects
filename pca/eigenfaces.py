@@ -66,7 +66,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 ###############################################################################
 # Compute a PCA (eigenfaces) on the face dataset (treated as unlabeled
 # dataset): unsupervised feature extraction / dimensionality reduction
-n_components = 150
+n_components = 150 ##
 
 print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
 t0 = time()
@@ -76,6 +76,10 @@ print "done in %0.3fs" % (time() - t0)
 eigenfaces = pca.components_.reshape((n_components, h, w))
 
 print "Projecting the input data on the eigenfaces orthonormal basis"
+
+##Used for first quiz question
+##print "printing the pca explained_variance_ratio_", pca.explained_variance_ratio_ 
+
 t0 = time()
 X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
@@ -108,7 +112,11 @@ y_pred = clf.predict(X_test_pca)
 print "done in %0.3fs" % (time() - t0)
 
 print classification_report(y_test, y_pred, target_names=target_names)
-print confusion_matrix(y_test, y_pred, labels=range(n_classes))
+
+
+
+##Commenting for Quiz
+##print confusion_matrix(y_test, y_pred, labels=range(n_classes))
 
 
 ###############################################################################
@@ -125,7 +133,7 @@ def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
         pl.xticks(())
         pl.yticks(())
 
-
+## Commenting for Quiz
 # plot the result of the prediction on a portion of the test set
 
 def title(y_pred, y_test, target_names, i):
@@ -136,11 +144,12 @@ def title(y_pred, y_test, target_names, i):
 prediction_titles = [title(y_pred, y_test, target_names, i)
                          for i in range(y_pred.shape[0])]
 
-plot_gallery(X_test, prediction_titles, h, w)
+##Commenting for Quiz
+##plot_gallery(X_test, prediction_titles, h, w)
 
 # plot the gallery of the most significative eigenfaces
 
 eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-plot_gallery(eigenfaces, eigenface_titles, h, w)
+##plot_gallery(eigenfaces, eigenface_titles, h, w)
 
 pl.show()
